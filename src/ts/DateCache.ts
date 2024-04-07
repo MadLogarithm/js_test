@@ -1,11 +1,11 @@
 function dateToString(date: Date) {
     return date.toISOString().split('T')[0];
 }
-function setDate(inter_since: string | number | Date, inter_until: string | number | Date) {
+function setDate(inter_since: string, inter_until: string) {
     const startDate = new Date(inter_since);
     const endDate = new Date(inter_until);
     const dates = [];
-    let result = [];
+    let result: any[] = [];
     while (startDate <= endDate) {
         dates.push(dateToString(new Date(startDate)));
         startDate.setDate(startDate.getDate() + 1);
@@ -14,12 +14,15 @@ function setDate(inter_since: string | number | Date, inter_until: string | numb
     dates.forEach(date => {
         // console.log(date);
         // console.log(interactionCache[date]);
+        // @ts-ignore
         if (interactionCache[date] !== undefined) {
             // console.log("yep");
+            // @ts-ignore
             interactionHistory = interactionHistory.concat(interactionCache[date]);
             result = result.filter(temp => temp !== date);
         } else {
             // console.log("nope");
+            // @ts-ignore
             interactionCache[date] = [{"name": 1}];
         }
         // console.log(interactionCache[date]);
@@ -28,7 +31,36 @@ function setDate(inter_since: string | number | Date, inter_until: string | numb
     // console.log(interactionHistory);
     return result; // 返回剩余的日期
 }
+function convertDateListToPairs(dateList: string | any[]) {
+    const datePairs = [];
+    let since = new Date(dateList[0]);
+    let until = new Date(dateList[0]);
+    for (let i= 1; i < dateList.length; i++) {
+        const date = new Date(dateList[i]);
+        if (date.getTime() - until.getTime() !== 86400000) {
+            datePairs.push([dateToString(since), dateToString(until)]);
+            since = date;
+            until = date;
+        } else if (i === dateList.length - 1) {
+            datePairs.push([dateToString(since), dateToString(date)]);
+        } else {
+            until = date;
+        }
+    }
+    return datePairs;
+}
 
+function dateToLegal(date: string) {
+    if (date.length !== 10) {
+        if (date[7] !== '-') {
+            date = date.substring(0, 5) + '0' + date.substring(5);
+        }
+        if (date.length !== 10) {
+            date = date.substring(0, 8) + '0' + date.substring(8);
+        }
+    }
+    return date;
+}
 //{
 //                     "_id": "1757639182372004319",
 //                     "posted_time": 1707888811000,
@@ -51,10 +83,13 @@ function setDate(inter_since: string | number | Date, inter_until: string | numb
 //                 }
 
 const interactionCache = {};
-let interactionHistory = [];
-let dates = setDate('2023-01-03', '2023-01-05');
+let interactionHistory: any[] = [];
+let dates = setDate('2023-11-01', '2024-03-08');
 console.log(dates);
-dates = setDate('2023-01-01', '2023-01-07');
+dates = setDate('2023-12-01', '2024-03-08');
 console.log(dates);
-dates = setDate('2022-12-31', '2023-01-10');
+dates = setDate('2023-08-01', '2023-12-08');
 console.log(dates);
+console.log(convertDateListToPairs(dates));
+const formatDate = dateToLegal('2023-8-1')
+console.log(formatDate)

@@ -1,5 +1,14 @@
 # js_test
 
+use esno
+
+```shell
+npm install -g esno
+esno ${文件名}.ts
+```
+
+------
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

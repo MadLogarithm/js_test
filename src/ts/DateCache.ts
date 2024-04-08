@@ -49,7 +49,6 @@ function convertDateListToPairs(dateList: string | any[]) {
     }
     return datePairs;
 }
-
 function dateToLegal(date: string) {
     if (date.length !== 10) {
         if (date[7] !== '-') {
@@ -61,6 +60,20 @@ function dateToLegal(date: string) {
     }
     return date;
 }
+
+const interactionCache = {};
+let interactionHistory: any[] = [];
+let dates = setDate('2023-11-01', '2024-03-08');
+// console.log(dates);
+console.log(convertDateListToPairs(dates));
+dates = setDate('2023-12-01', '2024-03-08');
+// console.log(dates);
+console.log(convertDateListToPairs(dates));
+dates = setDate('2023-08-01', '2023-12-08');
+// console.log(dates);
+console.log(convertDateListToPairs(dates));
+const formatDate = dateToLegal('2023-8-1')
+console.log(formatDate)
 
 //{
 //                     "_id": "1757639182372004319",
@@ -82,17 +95,3 @@ function dateToLegal(date: string) {
 //                     "views_count": 5567,
 //                     "bookmark_count": 3
 //                 }
-
-const interactionCache = {};
-let interactionHistory: any[] = [];
-let dates = setDate('2023-11-01', '2024-03-08');
-// console.log(dates);
-console.log(convertDateListToPairs(dates));
-dates = setDate('2023-12-01', '2024-03-08');
-// console.log(dates);
-console.log(convertDateListToPairs(dates));
-dates = setDate('2023-08-01', '2023-12-08');
-// console.log(dates);
-console.log(convertDateListToPairs(dates));
-const formatDate = dateToLegal('2023-8-1')
-console.log(formatDate)

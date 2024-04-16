@@ -16,9 +16,9 @@ function monthToLegal(month: string) {
     }
     return month;
 }
-function monthFeat(since: string | number | Date, until: string | number | Date) {
-    since = new Date(since);
-    until = new Date(until);
+function monthFeat(_since: string, _until: string) {
+    let since = new Date(_since);
+    let until = new Date(_until);
     // console.log(since, until);
     const monthList = [];
     while (since <= until) {
@@ -60,7 +60,7 @@ function convertMonthListToParis(monthList: string | any[]) {
     return monthPairs;
 }
 
-const since = '2023-04';
+let since = '2023-04';
 const until = '2024-04';
 const monthList = monthFeat(since, until);
 // console.log(monthList);

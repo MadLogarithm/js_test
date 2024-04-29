@@ -63,17 +63,19 @@ function dateToLegal(date: string) {
 
 const interactionCache = {};
 let interactionHistory: any[] = [];
-let dates = setDate('2023-11-01', '2024-03-08');
+console.log('interactionDate: ' + setDate('2024-03-02', '2024-03-04'));
+console.log("inter_since: 2024-02-20, inter_until: 2024-03-08");
+let dates = setDate('2024-02-20', '2024-03-08');
 // console.log(dates);
 console.log(convertDateListToPairs(dates));
-dates = setDate('2023-12-01', '2024-03-08');
+// dates = setDate('2023-12-01', '2024-03-08');
 // console.log(dates);
-console.log(convertDateListToPairs(dates));
-dates = setDate('2023-08-01', '2023-12-08');
+// console.log(convertDateListToPairs(dates));
+// dates = setDate('2023-08-01', '2023-12-08');
 // console.log(dates);
-console.log(convertDateListToPairs(dates));
-const formatDate = dateToLegal('2023-8-1')
-console.log(formatDate)
+// console.log(convertDateListToPairs(dates));
+// const formatDate = dateToLegal('2023-8-1')
+// console.log(formatDate)
 
 //{
 //                     "_id": "1757639182372004319",
